@@ -1,3 +1,4 @@
+<!-- Update tampilan surat masuk -->
 @extends('layouts.app')
 
 @section('title', 'Surat Masuk')
