@@ -22,12 +22,12 @@
             @forelse ($suratKeluar as $id => $surat)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $surat['nomor_surat'] }}</td>
-                    <td>{{ $surat['tanggal'] }}</td>
-                    <td>{{ $surat['tujuan'] }}</td>
-                    <td>{{ $surat['perihal'] }}</td>
-                    <td>
-                        <a href="{{ route('surat-keluar.show', ['id' => $id]) }}">
+                    <td>{{ $surat->nomor_surat }}</td>
+                    <td>{{ $surat->tanggal }}</td>
+                    <td>{{ $surat->pengirim }}</td>
+                    <td>{{ $surat->perihal }}</td>
+                    <td style="text-align: center; white-space: nowrap;">
+                        <a href="{{ route('surat-keluar.show', $surat->id) }}">
                             Detail
                         </a>
                     </td>
