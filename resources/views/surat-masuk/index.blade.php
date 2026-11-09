@@ -6,6 +6,10 @@
 @section('content')
 
     <h1>Daftar Surat Masuk</h1>
+    <a href="{{ route('surat-masuk.create') }}">+Tambah Surat Masuk</a>
+    @if (session('success'))
+        <p style="color:green">{{ session('success') }}</p>
+    @endif
 
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
@@ -20,7 +24,7 @@
         </thead>
 
         <tbody>
-            @forelse ($incomingLetters as $surat)
+            @forelse ($suratMasuk as $surat)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $surat->nomor_surat }}</td>
@@ -31,6 +35,19 @@
                         <a href="{{ route('surat-masuk.show', $surat->id) }}">
                             Detail
                         </a>
+
+                        <a href="{{ route('surat-masuk.edit', $surat->id) }}">
+                            edit
+                        </a>
+
+                        <form action="{{ route('surat-masuk.destroy', $surat['id']) }}" 
+                            method="POST" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Hapus surat ini?')">
+                            hapus
+                            </button>    
+                        </form>
                     </td>
                 </tr>
             @empty
