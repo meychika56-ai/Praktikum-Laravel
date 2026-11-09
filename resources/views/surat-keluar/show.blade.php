@@ -1,44 +1,68 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <title>Detail Surat Keluar</title>
-</head>
-<body>
 
-    <h1>Detail Surat Keluar</h1>
+@extends('layouts.app')
 
-    @if (isset($surat) && $surat !== null)
+@section('title', 'Detail Surat Keluar')
 
-        <p>
-            <strong>Nomor Surat:</strong>
-            {{ $surat['nomor_surat'] }}
-        </p>
+@section('content')
 
-        <p>
-            <strong>Tanggal:</strong>
-            {{ $surat['tanggal'] }}
-        </p>
+    <div class="detail-page">
 
-        <p>
-            <strong>Tujuan:</strong>
-            {{ $surat['tujuan'] }}
-        </p>
+        <h1>Detail Surat Keluar</h1>
 
-        <p>
-            <strong>Perihal:</strong>
-            {{ $surat['perihal'] }}
-        </p>
+        @if (isset($surat) && $surat !== null)
 
-    @else
+            <div class="detail-card">
 
-        <p>Surat tidak ditemukan.</p>
+                <div class="detail-heading">
+                    <h2>Informasi Surat</h2>
+                    <span class="detail-status">Surat Keluar</span>
+                </div>
 
-    @endif
+                <div class="detail-content">
 
-    <p>
-        <a href="{{ route('surat-keluar.index') }}">Kembali</a>
-    </p>
+                    <div class="detail-row">
+                        <span>Nomor Surat</span>
+                        <strong>{{ $surat['nomor_surat'] }}</strong>
+                    </div>
 
-</body>
-</html>
+                    <div class="detail-row">
+                        <span>Tanggal</span>
+                        <strong>{{ $surat['tanggal'] }}</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Pengirim</span>
+                        <strong>{{ $surat['pengirim'] }}</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Perihal</span>
+                        <strong>{{ $surat['perihal'] }}</strong>
+                    </div>
+
+                    <div class="detail-row">
+                        <span>Keterangan</span>
+                        <strong>{{ $surat->keterangan }}</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        @else
+
+            <div class="detail-card">
+                <p>Surat tidak ditemukan.</p>
+            </div>
+
+        @endif
+
+        <div class="detail-actions">
+            <a href="{{ route('surat-keluar.index') }}" class="btn-kembali">
+                ← Kembali
+            </a>
+        </div>
+
+    </div>
+
+@endsection
